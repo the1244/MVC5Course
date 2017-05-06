@@ -15,15 +15,20 @@ namespace MVC5Course.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your application descriptionXX page.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your contact CCCpage.";
 
+            return View();
+        }
+
+        public ActionResult Test()
+        {
             return View();
         }
     }
