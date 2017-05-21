@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
 using MVC5Course.ViewModels;
+using System.Data.Entity.Infrastructure;
 
 namespace MVC5Course.Controllers
 {
@@ -51,7 +52,9 @@ namespace MVC5Course.Controllers
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
+        [OutputCache(Duration = 5 ,Location = System.Web.UI.OutputCacheLocation.Client)]
         [ValidateAntiForgeryToken]
+        [HandleError(ExceptionType = typeof(DbUpdateException), View = "Error_DbUpdateException")]
         public ActionResult Create([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
         {
             if (ModelState.IsValid)
@@ -129,6 +132,14 @@ namespace MVC5Course.Controllers
         {
             var vm = repo.getProductViewList();
             return View(vm);
+        }
+
+        public ActionResult OrderListbyClientId(int ClientId)
+        {
+
+            var order = db.Order.Include(o => o.Client)
+                .Where(p => p.ClientId == ClientId);
+                        return View(order.ToList());
         }
 
         public ActionResult CreateProduct()

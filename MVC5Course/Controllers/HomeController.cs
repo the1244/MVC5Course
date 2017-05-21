@@ -69,5 +69,18 @@ namespace MVC5Course.Controllers
         {
             return View();
         }
+
+        public ActionResult QQQ()
+        {
+            return View();
+        }
+
+        public ActionResult RazorTest()
+        {
+            int[] i = new int[] { 1, 2, 3, 4, 5 };
+
+            ViewBag.intArray = i;
+            return PartialView();
+        }
     }
 }

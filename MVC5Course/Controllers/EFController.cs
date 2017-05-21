@@ -15,6 +15,7 @@ namespace MVC5Course.Controllers
         // GET: EF
         public ActionResult Index(SearchViewModel SearchViewModel)
         {
+            var e = repo.FindProduct單筆資料(1);
             var data = db.Product.Where(w => w.Active == true && w.ProductName.Contains("Black") && w.Is刪除 == false)
                           .OrderByDescending(x => x.ProductId).AsQueryable().Take(10);
 

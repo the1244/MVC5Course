@@ -1,0 +1,25 @@
+﻿@model int[]
+
+@{ 
+    int[] intArray = ViewBag.intArray;
+}
+
+@foreach (int i in intArray)
+{
+    @i
+}
+
+
+@foreach (int i in intArray)
+{
+    var ii = i + " ";
+    @ii
+}
+
+
+<ul>
+  @foreach (int i in intArray)
+    {
+  <li>@i</li>
+    }
+</ul>
